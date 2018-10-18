@@ -1,0 +1,26 @@
+{
+  "name": "swen-444-subtitle-extension",
+  "version": "1.0.0",
+  "description": "# How to Run the Backend",
+  "main": "backend/server.js",
+  "dependencies": {
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjpicciano/SWEN-444-Subtitle-Extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bjpicciano/SWEN-444-Subtitle-Extension/issues"
+  },
+  "homepage": "https://github.com/bjpicciano/SWEN-444-Subtitle-Extension#readme"
+}
