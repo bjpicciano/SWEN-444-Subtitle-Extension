@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "captions": [
+            [0, "Start of video"],
+            [5, "5 seconds into video"],
+            [8, "8 seconds into video"]
+        ]
+    },
+    {
+        "id": 2,
+        "captions": [
+            [0, "End of video"],
+            [5, "5 seconds into video"],
+            [8, "8 seconds into video"]
+        ]
+    }
+]
