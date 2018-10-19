@@ -39,8 +39,17 @@
 - /getCaptions
 
 ## Query
+GET Request
 To query on the endpoints, pass a *single* query or key=value;
 
 Examples:
 `?id=1`
 `?username=user1`
+
+# Update
+POST Request
+Post in the body the ENTIRE json you want to save. Even if you
+change a small part, repost the entire body.
+If there is already an ID matching, it will replace.
+If the ID isn't found, a 404 is thrown.
+If no ID is given, it will be inserted.
