@@ -19,6 +19,7 @@ function dataHandler(req, res, filename) {
             var searchResult = searchInData(data, key, value);
             if (searchResult == null) {
                 res.sendStatus(404);
+				return;
             }
             data = searchResult;
         }
