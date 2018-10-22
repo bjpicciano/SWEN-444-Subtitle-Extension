@@ -3,7 +3,8 @@ var app = express();
 var fs = require("fs");
 
 // parse various different custom JSON types as JSON
-app.use(express.json())
+app.use(express.json());
+app.use(express.static("client"));
 
 function indexForValue(data, key, value) {
     var index;
@@ -96,10 +97,9 @@ app.post('/updateCaption/:query?', function(req, res) {
 	updateDataHandler(req, res, 'captions');
 });
 
-
 app.get('/', function(req, res) {
     res.end('Server is running! You are at /');
-})
+});
 
 var server = app.listen(8080, function () {
 
