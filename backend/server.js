@@ -78,7 +78,6 @@ function updateDataHandler(req, res, filename) {
     });
 
     res.sendStatus(200);
-    return;
 }
 
 app.get('/getProfiles/:query?', function (req, res) {
@@ -103,9 +102,9 @@ app.get('/', function(req, res) {
 
 var server = app.listen(8080, function () {
 
-  var host = server.address().address
-  var port = server.address().port
+  var host = server.address().address;
+  var port = server.address().port;
 
   console.log("Universal Subtitle Extension Backend listening at http://%s:%s", host, port)
 
-})
+});
