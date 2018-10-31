@@ -5,18 +5,26 @@
     <title>Subtitle Editor</title>
 
     <link rel="stylesheet" href="site.css">
+    
+    <script src="http://www.youtube.com/player_api"></script>
+    <script src="editor.js"></script>
 </head>
 <body>
     <div class="flex-container">
         <div class="video-container test">
-            <iframe class="video" src="https://www.youtube.com/embed/YE7VzlLtp-4"></iframe>
+            <div id="player">
+                <!-- Populated by Youtube player API -->
+            </div>
         </div>
+        
+        
         <div class="subtitle-container test">
-            <div class="test">entry</div>
-            <div class="test">entry</div>
-            <div class="test">entry</div>
-            <div class="test">entry</div>
-            <div class="test">entry</div>
+            <div class="subtitle-entry test">
+                <div>
+                    00:00 - 00:20
+                </div>
+                <textarea class="subtitle" rows="3" editable>blahh</textarea>
+            </div>
         </div>
     </div>
 </body>
