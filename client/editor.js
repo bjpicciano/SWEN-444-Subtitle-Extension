@@ -64,27 +64,19 @@ function createSubtitleElement(subtitle) {
     subtitle_container.innerHTML += subtitle_element;
 }
 
+// TODO: Doesn't work well with newly created eles, find new way
 function bindEvents () {
     // handle save-button events
     document.getElementById("save-button").addEventListener("click", e => {
-        // TODO: update captions.json
         e.target.classList.add("hidden");
+        // TODO: update captions.json
     });
-
-    // handle time-new events
-    const new_buttons = document.getElementsByClassName("time-new");
-    for (let new_button of new_buttons) {
-        new_button.addEventListener("click", e => {
-            const target = e.target;
-        });
-    }
 
     // handle time-remove
     const remove_buttons = document.getElementsByClassName("time-remove");
     for (let remove_button of remove_buttons) {
         remove_button.addEventListener("click", e => {
-            const target = e.target;
-            const subtitle_entry = target.parentNode;
+            const subtitle_entry = remove_button.parentNode;
             subtitle_entry.parentNode.removeChild(subtitle_entry);
         });
     }
