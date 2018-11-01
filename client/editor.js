@@ -1,3 +1,5 @@
+const video_id = "YE7VzlLtp-4";
+
 window.onload = () => {
     const times = document.getElementsByClassName("time");
     for (let ele of times) {
@@ -9,17 +11,25 @@ window.onload = () => {
             // prevent erroneous input (text, > 2 characters, etc)
         });
     }
+
+    get(`getcaptions?id=${video_id}`)
+        .then(data => {
+            console.log(data);
+        })
+        .catch(e => {
+            console.error(e);
+        });
 };
 
 let player;
 function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
-        height: '',
-        width: '',
-        videoId: 'YE7VzlLtp-4',
+    player = new YT.Player("player", {
+        height: "",
+        width: "",
+        videoId: video_id,
         events: {
-            'onReady': () => {},
-            'onStateChange': () => {}
+            "onReady": () => {},
+            "onStateChange": () => {}
         }
     });
 }
