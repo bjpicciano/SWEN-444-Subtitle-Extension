@@ -17,6 +17,7 @@ window.onload = () => {
     get(`getcaptions?id=${video_id}`)
         .then(data => {
             loadSubtitles(data);
+            bindEvents();
         })
         .catch(e => {
             console.error(e);
@@ -63,7 +64,14 @@ function createSubtitleElement(subtitle) {
     subtitle_container.innerHTML += subtitle_element;
 }
 
-function bindCaptionEvents () {
+function bindEvents () {
+    // handle save-button events
+    document.getElementById("save-button").addEventListener("click", e => {
+        // TODO: update captions.json
+        e.target.classList.add("hidden");
+    });
+
+    // handle timestamp events
     const times = document.getElementsByClassName("time");
     for (let ele of times) {
         ele.addEventListener("focus", e => {
@@ -71,7 +79,16 @@ function bindCaptionEvents () {
         });
 
         ele.addEventListener("input", e => {
-            // prevent erroneous input (text, > 2 characters, etc)
+            document.getElementById("save-button").classList.remove("hidden");
+            // TODO: validate input as user updates
+        });
+    }
+
+    // handle textarea events
+    const textareas = document.getElementsByTagName("textarea");
+    for (let ele of textareas) {
+        ele.addEventListener("input", e => {
+            document.getElementById("save-button").classList.remove("hidden");
         });
     }
 }
