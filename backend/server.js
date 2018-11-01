@@ -31,9 +31,9 @@ function getDataHandler(req, res, filename) {
     fs.readFile("data/" + filename + ".json", 'utf8', function (err, data) {
         data = JSON.parse(data);
         var query = req.query;
-        if (Object.keys(req.query).length > 0) {
-            var key = Object.keys(req.query)[0];
-            var value = req.query[key];
+        if (Object.keys(query).length > 0) {
+            var key = Object.keys(query)[0];
+            var value = query[key];
             var index = indexForValue(data, key, value);
             if (index == null) {
                 res.sendStatus(404);
@@ -85,7 +85,7 @@ app.get('/getProfiles/:query?', function (req, res) {
 });
 
 app.get('/getCaptions/:query?', function (req, res) {
-   getDataHandler(req, res, 'captions');
+   getDataHandler(req, res, 'captions_new');
 });
 
 app.post('/updateProfile/:query?', function(req, res) {

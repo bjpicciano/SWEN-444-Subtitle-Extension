@@ -1,5 +1,14 @@
 window.onload = () => {
+    const times = document.getElementsByClassName("time");
+    for (let ele of times) {
+        ele.addEventListener("focus", e => {
+            document.execCommand('selectAll', false, null)
+        });
 
+        ele.addEventListener("input", e => {
+            // prevent erroneous input (text, > 2 characters, etc)
+        });
+    }
 };
 
 let player;
