@@ -40,6 +40,17 @@ body {
     resize: vertical;
 }
 
+.inline {
+    display: inline;
+}
+
+.time {
+}
+
+.time-button {
+    float: right;
+}
+
 #player {
     min-height: 250px;
     max-height: 450px;

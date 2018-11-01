@@ -1,5 +1,6 @@
 window.onload = () => {
-}
+
+};
 
 let player;
 function onYouTubeIframeAPIReady() {
