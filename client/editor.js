@@ -47,7 +47,7 @@ function captionToSubtitle(c) {
 function createSubtitleElement(subtitle) {
     const subtitle_element = `
         <div class="subtitle-entry test">
-            <button class="time-button">x</button>
+            <button class="time-remove time-button">x</button>
             <p class="time inline" contenteditable="true">${subtitle.start_minute}</p>
             <pre class="inline">:</pre>
             <p class="time inline" contenteditable="true">${subtitle.start_second}</p>
@@ -56,7 +56,7 @@ function createSubtitleElement(subtitle) {
             <pre class="inline">:</pre>
             <p class="time inline" contenteditable="true">${subtitle.end_second}</p>
             <textarea class="subtitle" rows="3" contenteditable="true">${subtitle.caption}</textarea>
-            <button class="time-button">+</button>
+            <button class="time-new time-button">+</button>
         </div>
     `;
 
@@ -70,6 +70,24 @@ function bindEvents () {
         // TODO: update captions.json
         e.target.classList.add("hidden");
     });
+
+    // handle time-new events
+    const new_buttons = document.getElementsByClassName("time-new");
+    for (let new_button of new_buttons) {
+        new_button.addEventListener("click", e => {
+            const target = e.target;
+        });
+    }
+
+    // handle time-remove
+    const remove_buttons = document.getElementsByClassName("time-remove");
+    for (let remove_button of remove_buttons) {
+        remove_button.addEventListener("click", e => {
+            const target = e.target;
+            const subtitle_entry = target.parentNode;
+            subtitle_entry.parentNode.removeChild(subtitle_entry);
+        });
+    }
 
     // handle timestamp events
     const times = document.getElementsByClassName("time");
