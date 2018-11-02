@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "View subtitles on any video!",
   "icons": {
-    "48": "quill48.png"
+    "48": "img/quill48.png"
   },
   "browser_action": {
     "default_popup": "popup.html"
