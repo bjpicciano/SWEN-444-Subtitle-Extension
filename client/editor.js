@@ -36,32 +36,32 @@ function captionToSubtitle(c) {
     const end = c.end;
 
     return {
-        "start_minute": start.split(":")[0],
-        "start_second": start.split(":")[1],
-        "end_minute": end.split(":")[0],
-        "end_second": end.split(":")[1],
+        "startMinute": start.split(":")[0],
+        "startSecond": start.split(":")[1],
+        "endMinute": end.split(":")[0],
+        "endSecond": end.split(":")[1],
         "caption": c.caption,
     }
 }
 
 function createSubtitleElement(subtitle) {
-    const subtitle_element = `
+    const subtitleElement = `
         <div class="subtitle-entry test">
             <button class="time-remove time-button">x</button>
-            <p class="time inline" contenteditable="true">${subtitle.start_minute}</p>
+            <p class="time inline" contenteditable="true">${subtitle.startMinute}</p>
             <pre class="inline">:</pre>
-            <p class="time inline" contenteditable="true">${subtitle.start_second}</p>
+            <p class="time inline" contenteditable="true">${subtitle.startSecond}</p>
             <pre class="inline"> - </pre>
-            <p class="time inline" contenteditable="true">${subtitle.end_minute}</p>
+            <p class="time inline" contenteditable="true">${subtitle.endMinute}</p>
             <pre class="inline">:</pre>
-            <p class="time inline" contenteditable="true">${subtitle.end_second}</p>
+            <p class="time inline" contenteditable="true">${subtitle.endSecond}</p>
             <textarea class="subtitle" rows="3" contenteditable="true">${subtitle.caption}</textarea>
             <button class="time-new time-button">+</button>
         </div>
     `;
 
-    const subtitle_container = document.getElementById("subtitle-container");
-    subtitle_container.innerHTML += subtitle_element;
+    const subtitleContainer = document.getElementById("subtitle-container");
+    subtitleContainer.innerHTML += subtitleElement;
 }
 
 // TODO: Doesn't work well with newly created eles, find new way
@@ -74,10 +74,10 @@ function bindEvents () {
 
     // handle time-remove
     const remove_buttons = document.getElementsByClassName("time-remove");
-    for (let remove_button of remove_buttons) {
-        remove_button.addEventListener("click", e => {
-            const subtitle_entry = remove_button.parentNode;
-            subtitle_entry.parentNode.removeChild(subtitle_entry);
+    for (let removeButton of remove_buttons) {
+        removeButton.addEventListener("click", e => {
+            const subtitleEntry = removeButton.parentNode;
+            subtitleEntry.parentNode.removeChild(subtitleEntry);
         });
     }
 
@@ -95,8 +95,8 @@ function bindEvents () {
     }
 
     // handle textarea events
-    const textareas = document.getElementsByTagName("textarea");
-    for (let ele of textareas) {
+    const textAreas = document.getElementsByTagName("textarea");
+    for (let ele of textAreas) {
         ele.addEventListener("input", e => {
             document.getElementById("save-button").classList.remove("hidden");
         });
