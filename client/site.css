@@ -54,6 +54,11 @@ body {
 .time {
 }
 
+#save-button {
+    width: 75px;
+    height: 40px;
+}
+
 .time-button {
     float: right;
     width: 30px;

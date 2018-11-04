@@ -26,42 +26,65 @@ window.onload = () => {
 
 function loadSubtitles(data) {
     for (c of data.captions) {
-        const subtitle = captionToSubtitle(c);
+        const subtitle = createSubtitleFromCaption(c);
         createSubtitleElement(subtitle);
     }
 }
 
-function captionToSubtitle(c) {
-    const start = c.start;
-    const end = c.end;
-
-    return {
-        "startMinute": start.split(":")[0],
-        "startSecond": start.split(":")[1],
-        "endMinute": end.split(":")[0],
-        "endSecond": end.split(":")[1],
-        "caption": c.caption,
-    }
+function saveSubtitles() {
+    const saveButton = document.getElementById("save-button");
+    saveButton.classList.add("hidden");
 }
 
-function createSubtitleElement(subtitle) {
-    const subtitleElement = `
+function createSubtitleFromCaption(caption) {
+    const startTime = caption.start;
+    const endTime = caption.end;
+
+    return {
+        "startMinute": startTime.split(":")[0],
+        "startSecond": startTime.split(":")[1],
+        "endMinute": endTime.split(":")[0],
+        "endSecond": endTime.split(":")[1],
+        "caption": caption.caption,
+    };
+}
+
+function createSubtitleElement(subtitle = {}, prevElement) {
+    const subtitleString = `
         <div class="subtitle-entry test">
-            <button class="time-remove time-button">x</button>
-            <p class="time inline" contenteditable="true">${subtitle.startMinute}</p>
+            <button class="time-remove time-button" onclick="removeSubtitleElement(this)">x</button>
+            <p class="time inline" contenteditable="true">${subtitle.startMinute || "00"}</p>
             <pre class="inline">:</pre>
-            <p class="time inline" contenteditable="true">${subtitle.startSecond}</p>
+            <p class="time inline" contenteditable="true">${subtitle.startSecond || "00"}</p>
             <pre class="inline"> - </pre>
-            <p class="time inline" contenteditable="true">${subtitle.endMinute}</p>
+            <p class="time inline" contenteditable="true">${subtitle.endMinute || "00"}</p>
             <pre class="inline">:</pre>
-            <p class="time inline" contenteditable="true">${subtitle.endSecond}</p>
-            <textarea class="subtitle" rows="3" contenteditable="true">${subtitle.caption}</textarea>
-            <button class="time-new time-button">+</button>
+            <p class="time inline" contenteditable="true">${subtitle.endSecond || "00"}</p>
+            <textarea class="subtitle" rows="3" contenteditable="true">${subtitle.caption || ""}</textarea>
+            <button class="time-new time-button" onclick="createSubtitleElement(undefined, this.parentNode)">+</button>
         </div>
     `;
 
-    const subtitleContainer = document.getElementById("subtitle-container");
-    subtitleContainer.innerHTML += subtitleElement;
+    const subtitles = document.getElementById("subtitle-container");
+    const subtitleElement = stringToElement(subtitleString);
+
+    if (!prevElement) {
+        subtitles.appendChild(subtitleElement);
+    } else {
+        // hacky insertAfter
+        subtitles.insertBefore(subtitleElement, prevElement.nextSibling)
+    }
+}
+
+function stringToElement(str) {
+    const d = document.createElement("div");
+    d.innerHTML = str;
+    return d.childNodes[1];
+}
+
+function removeSubtitleElement(removeButton) {
+    const subtitleEntry = removeButton.parentNode;
+    subtitleEntry.parentNode.removeChild(subtitleEntry);
 }
 
 // TODO: Doesn't work well with newly created eles, find new way
@@ -71,15 +94,6 @@ function bindEvents () {
         e.target.classList.add("hidden");
         // TODO: update captions.json
     });
-
-    // handle time-remove
-    const remove_buttons = document.getElementsByClassName("time-remove");
-    for (let removeButton of remove_buttons) {
-        removeButton.addEventListener("click", e => {
-            const subtitleEntry = removeButton.parentNode;
-            subtitleEntry.parentNode.removeChild(subtitleEntry);
-        });
-    }
 
     // handle timestamp events
     const times = document.getElementsByClassName("time");

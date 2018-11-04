@@ -9,6 +9,8 @@ $("#settings-icon").on("click", function() {
     $('.settings-screen').toggle("slide", {direction: "down"});
 });
 
+$("#transcribe-icon").on("click", function() {
+});
 
 $(".back").on("click", function() {
     $('.home-screen').show();
