@@ -51,16 +51,18 @@ function createSubtitleFromCaption(caption) {
 
 function createSubtitleElement(subtitle = {}, prevElement) {
     const subtitleString = `
-        <div class="subtitle-entry test">
+        <div class="subtitle-entry">
             <button class="time-remove time-button" onclick="removeSubtitleElement(this)">x</button>
-            <p class="time inline" contenteditable="true">${subtitle.startMinute || "00"}</p>
-            <pre class="inline">:</pre>
-            <p class="time inline" contenteditable="true">${subtitle.startSecond || "00"}</p>
-            <pre class="inline"> - </pre>
-            <p class="time inline" contenteditable="true">${subtitle.endMinute || "00"}</p>
-            <pre class="inline">:</pre>
-            <p class="time inline" contenteditable="true">${subtitle.endSecond || "00"}</p>
-            <textarea class="subtitle" rows="3" contenteditable="true">${subtitle.caption || ""}</textarea>
+            <div class="time">
+                <p class="inline" contenteditable="true">${subtitle.startMinute || "00"}</p>
+                <pre class="inline">:</pre>
+                <p class="inline" contenteditable="true">${subtitle.startSecond || "00"}</p>
+                <pre class="inline"> - </pre>
+                <p class="inline" contenteditable="true">${subtitle.endMinute || "00"}</p>
+                <pre class="inline">:</pre>
+                <p class="inline" contenteditable="true">${subtitle.endSecond || "00"}</p>
+            </div>
+            <textarea class="caption" rows="3" contenteditable="true">${subtitle.caption || ""}</textarea>
             <button class="time-new time-button" onclick="createSubtitleElement(undefined, this.parentNode)">+</button>
         </div>
     `;
@@ -89,13 +91,13 @@ function removeSubtitleElement(removeButton) {
 
 // TODO: Doesn't work well with newly created eles, find new way
 function bindEvents () {
-    // handle save-button events
-    document.getElementById("save-button").addEventListener("click", e => {
-        e.target.classList.add("hidden");
-        // TODO: update captions.json
-    });
-
-    // handle timestamp events
+    // // handle save-button events
+    // document.getElementById("save-button").addEventListener("click", e => {
+    //     e.target.classList.add("hidden");
+    //     // TODO: update captions.json
+    // });
+    //
+    // // handle timestamp events
     const times = document.getElementsByClassName("time");
     for (let ele of times) {
         ele.addEventListener("focus", e => {
@@ -107,12 +109,12 @@ function bindEvents () {
             // TODO: validate input as user updates
         });
     }
-
-    // handle textarea events
-    const textAreas = document.getElementsByTagName("textarea");
-    for (let ele of textAreas) {
-        ele.addEventListener("input", e => {
-            document.getElementById("save-button").classList.remove("hidden");
-        });
-    }
+    //
+    // // handle textarea events
+    // const textAreas = document.getElementsByTagName("textarea");
+    // for (let ele of textAreas) {
+    //     ele.addEventListener("input", e => {
+    //         document.getElementById("save-button").classList.remove("hidden");
+    //     });
+    // }
 }
