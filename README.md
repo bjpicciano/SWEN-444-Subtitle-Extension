@@ -1,8 +1,8 @@
 # SWEN-444-Subtitle-Extension
 
-# Running the program
+# Running the server
 Download and install Node.js  
-  
+
 Install the node packages:
 - ```npm install```
 
@@ -10,10 +10,10 @@ Start the node server:
 - ```npm start```
 
 # Adding the extension to chrome
-refer to google chrome's [getting started page](https://developer.chrome.com/extensions/getstarted) for more information
+Refer to google chrome's [getting started page](https://developer.chrome.com/extensions/getstarted) for more information
 1. Open the Extension Management page by navigating to chrome://extensions.
 2. Enable Developer Mode by clicking the toggle switch next to Developer mode.
-3. Click the LOAD UNPACKED button and select the extension directory.
+3. Click the LOAD UNPACKED button and select the extension directory of this project.
 
 # Data structure
 ## captions.json
