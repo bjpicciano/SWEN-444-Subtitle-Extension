@@ -1,4 +1,4 @@
-const video_id = "YE7VzlLtp-4";
+const video_id = "47Uf9luX-co";
 let player;
 
 function onYouTubeIframeAPIReady() {
@@ -14,40 +14,16 @@ function onYouTubeIframeAPIReady() {
 }
 
 window.onload = () => {
-    // const data = `
-    //     [
-    //       {
-    //         "id": "YE7VzlLtp-4",
-    //         "captions": [
-    //           {
-    //               "start": "00:00",
-    //               "end": "00:30",
-    //               "caption": "this is a TEST"
-    //           },
-    //           {
-    //               "start": "00:30",
-    //               "end": "5:00",
-    //               "caption": "this is a long caption"
-    //           }
-    //         ]
-    //       }
-    //     ]`;
-    //
-    // post("updatecaption", JSON.parse(data))
-    //     .then(data => {
-    //         console.log(data);
-    //     })
-    //     .catch(e => {
-    //         console.error(e);
-    //     });
-
     get(`getcaptions?id=${video_id}`)
         .then(data => {
             loadSubtitles(data);
-            bindEvents();
         })
         .catch(e => {
-            console.error(e);
+            if (e.message === "Not Found") {
+                createSubtitleElement();
+            } else {
+                console.error(e);
+            }
         });
 };
 
@@ -67,7 +43,7 @@ function saveSubtitles() {
             console.log(data);
 
             const saveButton = document.getElementById("save-button");
-            saveButton.classList.add("hidden");
+            // saveButton.classList.add("hidden");
         })
         .catch(e => {
             console.error(e);
@@ -125,6 +101,10 @@ function stringToElement(str) {
 function removeSubtitleElement(removeButton) {
     const subtitleEntry = removeButton.parentNode;
     subtitleEntry.parentNode.removeChild(subtitleEntry);
+
+    if (document.querySelectorAll(".subtitle-entry").length < 1) {
+        createSubtitleElement();
+    }
 }
 
 function gatherSubtitles() {
@@ -174,34 +154,4 @@ function gatherSubtitles() {
         .catch(e => {
             console.error(e);
         });
-}
-
-// TODO: Doesn't work well with newly created eles, find new way
-function bindEvents () {
-    // // handle save-button events
-    // document.getElementById("save-button").addEventListener("click", e => {
-    //     e.target.classList.add("hidden");
-    //     // TODO: update captions.json
-    // });
-    //
-    // // handle timestamp events
-    // const times = document.getElementsByClassName("time");
-    // for (let ele of times) {
-    //     ele.addEventListener("focus", e => {
-    //         document.execCommand('selectAll', false, null)
-    //     });
-    //
-    //     ele.addEventListener("input", e => {
-    //         document.getElementById("save-button").classList.remove("hidden");
-    //         // TODO: validate input as user updates
-    //     });
-    // }
-    //
-    // // handle textarea events
-    // const textAreas = document.getElementsByTagName("textarea");
-    // for (let ele of textAreas) {
-    //     ele.addEventListener("input", e => {
-    //         document.getElementById("save-button").classList.remove("hidden");
-    //     });
-    // }
 }

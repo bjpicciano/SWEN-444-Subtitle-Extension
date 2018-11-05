@@ -1,1 +1,17 @@
-[{"id":"YE7VzlLtp-4","captions":[{"start":"00:00","end":"00:30","caption":"this is a TEST"},{"start":"00:00","end":"00:00","caption":"big test"},{"start":"00:30","end":"5:00","caption":"this is a long caption"}]}]
+[
+  {
+    "id": "YE7VzlLtp-4",
+    "captions": [
+      {
+        "start": "00:00",
+        "end": "00:30",
+        "caption": "this is a short caption"
+      },
+      {
+        "start": "00:40",
+        "end": "5:00",
+        "caption": "this is a long caption"
+      }
+    ]
+  }
+]

@@ -20,14 +20,21 @@ Refer to google chrome's [getting started page](https://developer.chrome.com/ext
 
 ```
 [
-    {
-        "id": 1,
-        "captions": [
-            [0, "Start of video"],
-            [5, "5 seconds into video"],
-            [8, "8 seconds into video"],
-        ]
-    }
+  {
+    "id": "YE7VzlLtp-4",
+    "captions": [
+      {
+        "start": "00:00",
+        "end": "00:30",
+        "caption": "this is a short caption"
+      },
+      {
+        "start": "00:40",
+        "end": "5:00",
+        "caption": "this is a long caption"
+      }
+    ]
+  }
 ]
 ```
 
