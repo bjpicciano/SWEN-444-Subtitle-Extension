@@ -14,6 +14,33 @@ function onYouTubeIframeAPIReady() {
 }
 
 window.onload = () => {
+    // const data = `
+    //     [
+    //       {
+    //         "id": "YE7VzlLtp-4",
+    //         "captions": [
+    //           {
+    //               "start": "00:00",
+    //               "end": "00:30",
+    //               "caption": "this is a TEST"
+    //           },
+    //           {
+    //               "start": "00:30",
+    //               "end": "5:00",
+    //               "caption": "this is a long caption"
+    //           }
+    //         ]
+    //       }
+    //     ]`;
+    //
+    // post("updatecaption", JSON.parse(data))
+    //     .then(data => {
+    //         console.log(data);
+    //     })
+    //     .catch(e => {
+    //         console.error(e);
+    //     });
+
     get(`getcaptions?id=${video_id}`)
         .then(data => {
             loadSubtitles(data);
@@ -32,8 +59,19 @@ function loadSubtitles(data) {
 }
 
 function saveSubtitles() {
-    const saveButton = document.getElementById("save-button");
-    saveButton.classList.add("hidden");
+    gatherSubtitles()
+        .then(data => {
+            return post("updatecaption", data)
+        })
+        .then(data => {
+            console.log(data);
+
+            const saveButton = document.getElementById("save-button");
+            saveButton.classList.add("hidden");
+        })
+        .catch(e => {
+            console.error(e);
+        });
 }
 
 function createSubtitleFromCaption(caption) {
@@ -89,6 +127,55 @@ function removeSubtitleElement(removeButton) {
     subtitleEntry.parentNode.removeChild(subtitleEntry);
 }
 
+function gatherSubtitles() {
+    return get("getcaptions")
+        .then(data => {
+            let videoEntry;
+            // find the video
+            for (let entry of data) {
+                if (entry.id === video_id) {
+                    videoEntry = entry;
+                }
+            }
+
+            // if we don't find the video entry, make it
+            if (!videoEntry) {
+                videoEntry = {
+                    "id": video_id,
+                };
+
+                data.append(videoEntry);
+            }
+
+            videoEntry["captions"] = [];
+
+            const subtitleEntries = document.querySelectorAll(".subtitle-entry");
+            for (let subtitleEntry of subtitleEntries) {
+                const times = subtitleEntry.querySelectorAll("p[contenteditable='true']");
+                const caption = subtitleEntry.querySelector("textarea");
+
+                const startMinute = times[0].innerHTML,
+                    startSecond = times[1].innerHTML,
+                    endMinute = times[2].innerHTML,
+                    endSecond = times[3].innerHTML,
+                    text = caption.value;
+
+                const captionEntry = {
+                    "start": startMinute + ":" + startSecond,
+                    "end": endMinute + ":" + endSecond,
+                    caption: text
+                };
+
+                videoEntry.captions.push(captionEntry);
+            }
+
+            return data;
+        })
+        .catch(e => {
+            console.error(e);
+        });
+}
+
 // TODO: Doesn't work well with newly created eles, find new way
 function bindEvents () {
     // // handle save-button events
@@ -98,17 +185,17 @@ function bindEvents () {
     // });
     //
     // // handle timestamp events
-    const times = document.getElementsByClassName("time");
-    for (let ele of times) {
-        ele.addEventListener("focus", e => {
-            document.execCommand('selectAll', false, null)
-        });
-
-        ele.addEventListener("input", e => {
-            document.getElementById("save-button").classList.remove("hidden");
-            // TODO: validate input as user updates
-        });
-    }
+    // const times = document.getElementsByClassName("time");
+    // for (let ele of times) {
+    //     ele.addEventListener("focus", e => {
+    //         document.execCommand('selectAll', false, null)
+    //     });
+    //
+    //     ele.addEventListener("input", e => {
+    //         document.getElementById("save-button").classList.remove("hidden");
+    //         // TODO: validate input as user updates
+    //     });
+    // }
     //
     // // handle textarea events
     // const textAreas = document.getElementsByTagName("textarea");

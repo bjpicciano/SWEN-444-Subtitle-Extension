@@ -93,7 +93,14 @@ app.post('/updateProfile/:query?', function(req, res) {
 });
 
 app.post('/updateCaption/:query?', function(req, res) {
-	updateDataHandler(req, res, 'captions');
+    const data = req.body;
+    fs.writeFile("data/captions.json", JSON.stringify(data), 'utf8', e => {
+        if (!e) {
+            res.send("200");
+        } else {
+            console.log(e)
+        }
+    });
 });
 
 app.get('/', function(req, res) {
