@@ -2,6 +2,7 @@
     <body>
         <div class="home-screen screen" >
           <div class="header section">
+              <p class="title">Universal Subtitle Extension</p>
               <div class="toggle-section">
                   <label>OFF</label>
                   <label class="switch">
@@ -25,9 +26,9 @@
           </div>
           <hr />
           <div class="footer section">
-              <label>v.1.2.3</label>
-              <label>date</label>
-              <button>help</button>
+              <label>v.1.0.0</label>
+              <label id="date">8/10/18</label>
+              <button>Help</button>
           </div>
         </div>
         <div class="profile-screen screen" style="display: none;">
@@ -93,18 +94,37 @@
             /*
             Sections
             */
+
+            .header {
+                text-align: center;
+            }
+
+            .header i {
+                float: left;
+                font-size: 24px;
+                margin-top: 8px;
+            }
+
             .header h1 {
                 text-align: center;
                 text-decoration: underline;
                 margin: 0;
                 display: inline-block;
+                margin-right: 24px;
             }
+
+
 
             .middle h2 {
                 text-decoration: underline;
                 text-align: center;
                 margin: 0;
                 display: inline-block;
+                margin: 0;
+            }
+
+            .title {
+                margin: 0 0 5px 0;
             }
 
             ul {
@@ -117,6 +137,14 @@
 
             .footer {
                 text-align: center;
+            }
+
+            .footer :first-child  {
+                float: left;
+            }
+
+            .footer :last-child {
+                float: right;
             }
 
             /*
@@ -154,7 +182,7 @@
             Slider
             */
             .toggle-section {
-                text-align: right;
+
             }
 
             .switch {
@@ -162,6 +190,7 @@
               display: inline-block;
               width: 47px;
               height: 18px;
+              vertical-align: top;
             }
 
             .switch input {
