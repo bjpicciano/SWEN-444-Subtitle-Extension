@@ -1,4 +1,8 @@
 # SWEN-444-Subtitle-Extension
+Running this project (more details in sections below):
+1. Start the server
+2. Load the extension into chrome
+3. Interact with the project through the extension and website
 
 # Running the server
 Download and install Node.js  
@@ -55,6 +59,7 @@ Refer to google chrome's [getting started page](https://developer.chrome.com/ext
 # Endpoints
 - /getProfiles
 - /getCaptions
+- /updateCaption
 
 ## Query
 ###### GET Request  
