@@ -6,6 +6,10 @@ const fs = require("fs");
 app.use(express.json());
 app.use(express.static("client"));
 
+// Serve all content from /video at ./video
+app.use("/video", express.static("video"))
+
+
 function indexForValue(data, key, value) {
     let index;
     data.forEach(function(item, i) {
@@ -74,7 +78,7 @@ function updateDataHandler(req, res, filename) {
             data.push(req.body)
         }
         // Write new data
-        fs.writeFile("data/" + filename + ".json", JSON.stringify(data), 'utf8');        
+        fs.writeFile("data/" + filename + ".json", JSON.stringify(data), 'utf8');
     });
 
     res.sendStatus(200);
@@ -87,6 +91,7 @@ app.get('/getProfiles/:query?', function (req, res) {
 app.get('/getCaptions/:query?', function (req, res) {
    getDataHandler(req, res, 'captions');
 });
+
 
 app.post('/updateProfile/:query?', function(req, res) {
 	updateDataHandler(req, res, 'profiles');
