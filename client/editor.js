@@ -28,8 +28,7 @@ window.onload = () => {
 };
 
 function loadSubtitles(data) {
-    for (c of data.captions) {
-        const subtitle = createSubtitleFromCaption(c);
+    for (let subtitle of data.captions) {
         createSubtitleElement(subtitle);
     }
 }
@@ -50,33 +49,21 @@ function saveSubtitles() {
         });
 }
 
-function createSubtitleFromCaption(caption) {
-    const startTime = caption.start;
-    const endTime = caption.end;
-
-    return {
-        "startMinute": startTime.split(":")[0],
-        "startSecond": startTime.split(":")[1],
-        "endMinute": endTime.split(":")[0],
-        "endSecond": endTime.split(":")[1],
-        "caption": caption.caption,
-    };
-}
-
 function createSubtitleElement(subtitle = {}, prevElement) {
     const subtitleString = `
         <div class="subtitle-entry">
-            <button class="time-remove time-button" onclick="removeSubtitleElement(this)">x</button>
-            <div class="time">
-                <p class="inline" contenteditable="true">${subtitle.startMinute || "00"}</p>
-                <pre class="inline">:</pre>
-                <p class="inline" contenteditable="true">${subtitle.startSecond || "00"}</p>
-                <pre class="inline"> - </pre>
-                <p class="inline" contenteditable="true">${subtitle.endMinute || "00"}</p>
-                <pre class="inline">:</pre>
-                <p class="inline" contenteditable="true">${subtitle.endSecond || "00"}</p>
+            <div class="arrows">
+                <img onclick="moveSubtitle(this, 'up')" class="arrow" src="https://image.flaticon.com/icons/svg/7/7645.svg">
+                <br />
+                <img onclick="moveSubtitle(this, 'down');" class="arrow" src="https://image.flaticon.com/icons/svg/25/25224.svg">
             </div>
-            <textarea class="caption" rows="3" contenteditable="true">${subtitle.caption || ""}</textarea>
+            <button class="time-remove time-button" onclick="removeSubtitleElement(this)">x</button>
+            <div class="times">
+                <input maxlength="5" class="inline time" placeholder="00:00" value="${subtitle.start || "00:00"}">
+                <p class="inline">-</p>
+                <input maxlength="5" class="inline time" placeholder="00:00" value="${subtitle.end || "00:00"}">
+            </div>
+            <textarea class="caption" rows="3">${subtitle.caption || ""}</textarea>
             <button class="time-new time-button" onclick="createSubtitleElement(undefined, this.parentNode)">+</button>
         </div>
     `;
@@ -87,7 +74,7 @@ function createSubtitleElement(subtitle = {}, prevElement) {
     if (!prevElement) {
         subtitles.appendChild(subtitleElement);
     } else {
-        // hacky insertAfter
+        // hacky insert after
         subtitles.insertBefore(subtitleElement, prevElement.nextSibling)
     }
 }
@@ -124,26 +111,20 @@ function gatherSubtitles() {
                     "id": video_id,
                 };
 
-                data.append(videoEntry);
+                data.push(videoEntry);
             }
 
             videoEntry["captions"] = [];
 
             const subtitleEntries = document.querySelectorAll(".subtitle-entry");
             for (let subtitleEntry of subtitleEntries) {
-                const times = subtitleEntry.querySelectorAll("p[contenteditable='true']");
+                const times = subtitleEntry.querySelectorAll("input.time");
                 const caption = subtitleEntry.querySelector("textarea");
 
-                const startMinute = times[0].innerHTML,
-                    startSecond = times[1].innerHTML,
-                    endMinute = times[2].innerHTML,
-                    endSecond = times[3].innerHTML,
-                    text = caption.value;
-
                 const captionEntry = {
-                    "start": startMinute + ":" + startSecond,
-                    "end": endMinute + ":" + endSecond,
-                    caption: text
+                    "start": times[0].value,
+                    "end": times[1].value,
+                    caption: caption.value
                 };
 
                 videoEntry.captions.push(captionEntry);
@@ -154,4 +135,28 @@ function gatherSubtitles() {
         .catch(e => {
             console.error(e);
         });
+}
+
+function moveSubtitle(ele, direction) {
+
+    const subtitleEntry = ele.parentNode.parentNode;
+    const subtitleContainer = subtitleEntry.parentNode;
+
+    let siblingEntry;
+    let insertEntry;
+
+    if (direction === "up") {
+        siblingEntry = subtitleEntry.previousSibling;
+        insertEntry = siblingEntry;
+    } else if (direction === "down") {
+        siblingEntry = subtitleEntry.nextSibling;
+        insertEntry = siblingEntry.nextSibling;
+    } else {
+        return;
+    }
+
+    if (siblingEntry && siblingEntry.classList && siblingEntry.classList[0] === "subtitle-entry") {
+        subtitleContainer.removeChild(subtitleEntry);
+        subtitleContainer.insertBefore(subtitleEntry, insertEntry);
+    }
 }

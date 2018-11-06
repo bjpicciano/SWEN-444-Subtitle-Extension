@@ -61,8 +61,18 @@ body {
 
 #save-button {
     width: 75px;
-    height: 40px;
+    padding: 10px 0 10px 0;
     margin-top: 10px;
+}
+
+.times {
+    margin-top: 14px;
+}
+
+.time {
+    width: 20%;
+    max-width: 75px;
+    min-width: 40px;
 }
 
 .time-button {
@@ -77,4 +87,14 @@ body {
     height: 100%;
     width: 75%;
     margin-top: 10px;
+}
+
+.arrows {
+    float: left;
+    margin-right: 10px;
+}
+
+.arrow {
+    padding: 5px;
+    width: 12px;
 }
