@@ -18,9 +18,14 @@
     "id": "47Uf9luX-co",
     "captions": [
       {
-        "start": "04:00",
-        "end": "04:40",
-        "caption": "and we're saving it now."
+        "start": "00:00",
+        "end": "00:05",
+        "caption": "At Dublin bus we're always looking to keep you up to speed on route information."
+      },
+      {
+        "start": "00:05",
+        "end": "00:08",
+        "caption": "That's why we added a new alerts function to the Dublin bus app"
       }
     ]
   }
