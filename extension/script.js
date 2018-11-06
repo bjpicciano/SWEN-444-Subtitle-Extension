@@ -32,3 +32,8 @@ $(".back").on("click", function() {
     $('.home-screen').show();
     $(this).closest(".screen").toggle("slide", {direction: "up"});
 });
+
+$("#help").on("click", function() {
+    $('.help-screen').show();
+    $(this).closest(".screen").toggle("slide", {direction: "up"});
+});
