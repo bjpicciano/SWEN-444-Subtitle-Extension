@@ -85,10 +85,10 @@ function updateDataHandler(req, res, filename) {
 }
 
 function formatVTT(data){
-    var vttData = "WEBVTT \n\n";
+    var vttData = "WEBVTT";
     var recentSubs = data[data.length - 1].captions;
     for(let idx = 0; idx < recentSubs.length; idx++){
-        vttData += recentSubs[idx].start + ".0000 --> " + recentSubs[idx].end + ".0000\n" + recentSubs[idx].caption + "\n\n";
+        vttData += "\n\n" + recentSubs[idx].start + ".000 --> " + recentSubs[idx].end + ".000\n" + recentSubs[idx].caption;
     }
     return vttData;
 }
@@ -115,7 +115,11 @@ app.post('/updateCaption/:query?', function(req, res) {
             console.log(e)
         }
     });
-    console.log(formatVTT(data));
+    // update vtt file with caption data from update post
+    fs.writeFile("./client/subs.vtt", formatVTT(data), 'utf8', function(err, data) {
+        if(err) console.log(err);
+        console.log("Successfully updated VTT file");
+    });
 });
 
 app.get('/', function(req, res) {
