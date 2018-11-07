@@ -17,6 +17,7 @@ window.onload = () => {
     get(`getcaptions?id=${video_id}`)
         .then(data => {
             loadSubtitles(data);
+            document.getElementById("loader").classList.add("hidden");
         })
         .catch(e => {
             if (e.message === "Not Found") {
