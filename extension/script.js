@@ -15,6 +15,13 @@ $(document).ready(function() {
 
     today = mm + '/' + dd + '/' + yyyy;
     $("#date").text(today);
+
+    chrome.storage.sync.get('isOn', function(data) {
+        // this is called after the retrieve.
+        $("#onoffswitch").prop("checked", data['isOn']);
+        checkCaptionsState();
+    });
+
 });
 
 $("#profile-icon").on("click", function() {
@@ -53,15 +60,17 @@ $("#save-customization").on("click", function() {
     });
 });
 
+function checkCaptionsState() {
+
+    let on = $("#onoffswitch").is(':checked');
+    chrome.storage.sync.set({"isOn": on});
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {"message": "toggle", "value":  on});
+    });
+};
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    $("#onoffswitch").change(function() {
-
-        let on = $(this).is(':checked');
-        chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
-            var activeTab = tabs[0];
-            chrome.tabs.sendMessage(activeTab.id, {"message": "toggle", "value":  on});
-        });
-    });
+    $("#onoffswitch").change(checkCaptionsState);
 });
