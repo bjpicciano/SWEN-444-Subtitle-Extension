@@ -116,9 +116,11 @@ app.post('/updateCaption/:query?', function(req, res) {
         }
     });
     // update vtt file with caption data from update post
-    fs.writeFile("./client/subs.vtt", formatVTT(data), 'utf8', function(err, data) {
+    fs.writeFile("./video/real-subs.vtt", formatVTT(data), 'utf8', function(err, data) {
         if(err) console.log(err);
-        console.log("Successfully updated VTT file");
+        else{
+            console.log("Successfully updated VTT file");
+        }
     });
 });
 
