@@ -22,6 +22,13 @@ $(document).ready(function() {
         checkCaptionsState();
     });
 
+    chrome.storage.sync.get('data', function(data) {
+        chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+            var activeTab = tabs[0];
+            chrome.tabs.sendMessage(activeTab.id, data.data);
+        });
+    });
+
 });
 
 $("#profile-icon").on("click", function() {
@@ -56,7 +63,10 @@ $("#save-customization").on("click", function() {
     // let transparency = document.getElementById("transparency").value;
     chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
         var activeTab = tabs[0];
-        chrome.tabs.sendMessage(activeTab.id, {"message": "customize-subs", "fontColor": fontColor, "bkgdColor": bkgdColor});
+        var data = {"message": "customize-subs", "fontColor": fontColor, "bkgdColor": bkgdColor};
+        chrome.storage.sync.set({'data': data});
+
+        chrome.tabs.sendMessage(activeTab.id, data);
     });
 });
 
