@@ -43,7 +43,14 @@ $("#transcribe-icon").on("click", function() {
 });
 
 $("#save-customization").on("click", function() {
-    
+    let fontColor = document.getElementById("font-color-picker").value;
+    let bkgdColor = document.getElementById("background-color-picker").value;
+    // let fontSize = document.getElementById("font-size").options[this.selectedIndex].value;
+    // let transparency = document.getElementById("transparency").value;
+    chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+        var activeTab = tabs[0];
+        chrome.tabs.sendMessage(activeTab.id, {"message": "customize-subs", "fontColor": fontColor, "bkgdColor": bkgdColor});
+    });
 });
 
 

@@ -4,5 +4,11 @@ chrome.runtime.onMessage.addListener(
             var visibility = request.value ? "visible": "hidden";
             document.styleSheets[0].addRule('video::cue','visibility: ' + visibility + ';');
         }
+        else if(request.message == "customize-subs"){
+            let fontColor = request.fontColor;
+            let bkgdColor = request.bkgdColor;
+            document.styleSheets[0].addRule('video::cue','color: ' + fontColor + ';');
+            document.styleSheets[0].addRule('video::cue','background: ' + bkgdColor + ';');
+        }
     }
 );
