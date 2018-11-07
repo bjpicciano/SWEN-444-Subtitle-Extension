@@ -42,6 +42,11 @@ $("#transcribe-icon").on("click", function() {
     window.open('http://localhost:8080/editor.html', '_blank');
 });
 
+$("#save-customization").on("click", function() {
+    
+});
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     $("#onoffswitch").change(function() {
