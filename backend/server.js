@@ -84,6 +84,15 @@ function updateDataHandler(req, res, filename) {
     res.sendStatus(200);
 }
 
+function formatVTT(data){
+    var vttData = "WEBVTT \n\n";
+    var recentSubs = data[data.length - 1].captions;
+    for(let idx = 0; idx < recentSubs.length; idx++){
+        vttData += recentSubs[idx].start + ".0000 --> " + recentSubs[idx].end + ".0000\n" + recentSubs[idx].caption + "\n\n";
+    }
+    return vttData;
+}
+
 app.get('/getProfiles/:query?', function (req, res) {
    getDataHandler(req, res, 'profiles');
 });
@@ -106,6 +115,7 @@ app.post('/updateCaption/:query?', function(req, res) {
             console.log(e)
         }
     });
+    console.log(formatVTT(data));
 });
 
 app.get('/', function(req, res) {
