@@ -6,7 +6,7 @@
               <div class="toggle-section">
                   <label>OFF</label>
                   <label class="switch">
-                      <input type="checkbox" checked>
+                      <input type="checkbox">
                       <span class="slider round"></span>
                   </label>
                   <label>ON</label>
@@ -20,11 +20,9 @@
               <div class="main-icon circleBase " id="settings-icon">
                 <img src='./img/settings-icon.png' style="">
               </div>
-              <a href="http://localhost:8080/editor.html" target="_blank">
-                  <div class="main-icon circleBase " id="transcribe-icon">
-                      <img src='./img/main-icon.png'>
-                  </div>
-              </a>
+              <div class="main-icon circleBase " id="transcribe-icon">
+                  <img src='./img/main-icon.png'>
+              </div>
           </div>
           <hr />
           <div class="footer section">
@@ -42,9 +40,16 @@
             <div class="middle section">
                 <h2>Contribution Stats</h2>
                 <ul>
-                    <li>Number of lines written: 2K</li>
+                    <li>Number of lines written: 2,000</li>
                     <li>Number of edits submitted: 300</li>
-                    <li>Current Subtitle Bounty: 3200 Pts</li>
+                    <li>Number of videos captioned: 10</li>
+                    <li>Contributor since: January 1st, 2018</li>
+                </ul>
+                <h2>User Stats</h2>
+                <ul>
+                    <li>Number of videos watched with captions: 25</li>
+                    <li>Number of videos watched without captions: 300</li>
+                    <li>User since: January 1st, 2018</li>
                 </ul>
             </div>
             <hr />
@@ -59,11 +64,20 @@
             </div>
             <hr />
             <div class="middle section">
-                <h2>Notification Settings</h2>
-                <ul>
-                    <li>Setting 1</li>
-                    <li>Setting 2</li>
-                </ul>
+                <p>Font Color: <input id="font-color-picker" class="jscolor" value="ab2567"></p>
+                <p>Caption Background Color: <input id="background-color-picker" class="jscolor" value="ab2567"></p>
+                <p>
+                    Font Size:
+                    <select>
+                      <option value="small">Small</option>
+                      <option value="medium">Medium</option>
+                      <option value="large">Large</option>
+                    </select>
+                </p>
+                <p>
+                    Transparency: 0%<input type="range" min="1" max="100" value="50" style="width: 100px;">100%
+                </p>
+
             </div>
             <hr />
             <div class="footer section">
@@ -98,6 +112,7 @@
         <script
         src="./jquery-ui.min.js"></script>
         <script src="script.js"></script>
+        <script src="./packages/jscolor.js"></script>
         <link rel="stylesheet" href="./jquery-ui.min.css" />
         <link rel="stylesheet" href="./fontawesome/css/all.min.css" />
         <style>
@@ -157,7 +172,7 @@
             }
 
             .middle {
-               height: 80px;
+
             }
 
             .footer {
@@ -270,6 +285,7 @@
             .slider.round:before {
               border-radius: 50%;
             }
+
 
        </style>
     </body>

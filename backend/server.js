@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(express.static("client"));
 
 // Serve all content from /video at ./video
-app.use("/video", express.static("video"))
+app.use("/video", express.static("video"));
 
 
 function indexForValue(data, key, value) {
@@ -101,13 +101,13 @@ app.get('/getCaptions/:query?', function (req, res) {
    getDataHandler(req, res, 'captions');
 });
 
-
 app.post('/updateProfile/:query?', function(req, res) {
 	updateDataHandler(req, res, 'profiles');
 });
 
 app.post('/updateCaption/:query?', function(req, res) {
     const data = req.body;
+
     fs.writeFile("data/captions.json", JSON.stringify(data), 'utf8', e => {
         if (!e) {
             res.send("200");

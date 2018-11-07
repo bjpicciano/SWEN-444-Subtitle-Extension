@@ -49,6 +49,11 @@ function saveSubtitles() {
         });
 }
 
+function closeEditor() {
+    if (confirm("Are you sure you want to quit?"))
+        window.location = "http://localhost:8080/";
+}
+
 function createSubtitleElement(subtitle = {}, prevElement) {
     const subtitleString = `
         <div class="subtitle-entry">
