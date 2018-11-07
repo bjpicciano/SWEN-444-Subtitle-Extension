@@ -37,3 +37,7 @@ $("#help").on("click", function() {
     $('.help-screen').show();
     $(this).closest(".screen").toggle("slide", {direction: "up"});
 });
+
+$("#transcribe-icon").on("click", function() {
+    window.open('http://localhost:8080/editor.html', '_blank');
+});
