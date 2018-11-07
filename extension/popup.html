@@ -64,11 +64,20 @@
             </div>
             <hr />
             <div class="middle section">
-                <h2>Notification Settings</h2>
-                <ul>
-                    <li>Setting 1</li>
-                    <li>Setting 2</li>
-                </ul>
+                <p>Font Color: <input id="font-color-picker" class="jscolor" value="ab2567"></p>
+                <p>Caption Background Color: <input id="background-color-picker" class="jscolor" value="ab2567"></p>
+                <p>
+                    Font Size:
+                    <select>
+                      <option value="small">Small</option>
+                      <option value="medium">Medium</option>
+                      <option value="large">Large</option>
+                    </select>
+                </p>
+                <p>
+                    Transparency: 0%<input type="range" min="1" max="100" value="50" style="width: 100px;">100%
+                </p>
+
             </div>
             <hr />
             <div class="footer section">
@@ -103,6 +112,7 @@
         <script
         src="./jquery-ui.min.js"></script>
         <script src="script.js"></script>
+        <script src="./packages/jscolor.js"></script>
         <link rel="stylesheet" href="./jquery-ui.min.css" />
         <link rel="stylesheet" href="./fontawesome/css/all.min.css" />
         <style>
@@ -162,7 +172,7 @@
             }
 
             .middle {
-               
+
             }
 
             .footer {
@@ -275,6 +285,7 @@
             .slider.round:before {
               border-radius: 50%;
             }
+
 
        </style>
     </body>
