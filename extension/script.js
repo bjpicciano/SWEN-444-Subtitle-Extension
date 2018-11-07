@@ -41,3 +41,15 @@ $("#help").on("click", function() {
 $("#transcribe-icon").on("click", function() {
     window.open('http://localhost:8080/editor.html', '_blank');
 });
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    $("#onoffswitch").change(function() {
+
+        let on = $(this).is(':checked');
+        chrome.tabs.query({currentWindow: true, active: true}, function (tabs){
+            var activeTab = tabs[0];
+            chrome.tabs.sendMessage(activeTab.id, {"message": "toggle", "value":  on});
+        });
+    });
+});

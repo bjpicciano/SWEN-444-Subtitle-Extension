@@ -8,5 +8,21 @@
   "browser_action": {
     "default_popup": "popup.html"
   },
+  "permissions": [
+    "activeTab"
+
+    ],
+
+
+
+
+     "content_scripts": [
+    {
+      "matches": ["<all_urls>", "http://*/*", "https://*/*"],
+      "js": ["contentscript.js"],
+      "all_frames": true,
+      "run_at": "document_start"
+
+    }],
   "manifest_version": 2
 }
