@@ -14,13 +14,13 @@
           </div>
           <hr />
           <div class="row middle section" >
-              <div class="main-icon circleBase" id="profile-icon">
+              <div class="main-icon" id="profile-icon">
                 <img src='./img/profile-icon.png'>
               </div>
-              <div class="main-icon circleBase " id="settings-icon">
+              <div class="main-icon " id="settings-icon">
                 <img src='./img/settings-icon.png' style="">
               </div>
-              <div class="main-icon circleBase " id="transcribe-icon">
+              <div class="main-icon" id="transcribe-icon">
                   <img src='./img/main-icon.png'>
               </div>
           </div>
@@ -67,7 +67,7 @@
                 <p>Font Color: <input id="font-color-picker" class="jscolor" value="ab2567"></p>
                 <p>Caption Background Color: <input id="background-color-picker" class="jscolor" value="ab2567"></p>
                 <p>
-                    Font Size: 
+                    Font Size:
                     <select id="font-size">
                       <option value="small">Small</option>
                       <option value="medium">Medium</option>
@@ -203,15 +203,13 @@
             }
 
             .main-icon img {
-               height: 50px;
-               width: 50px;
+               height: 100%;
+               width: 100%;
                padding: 5px;
                padding-top: 9px;
             }
 
-           .circleBase {
-               border-radius: 50%;
-               background-color: lightgray;
+           .main-icon {
                width: 70px;
                height: 70px;
             }
