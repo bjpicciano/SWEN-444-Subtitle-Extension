@@ -59,9 +59,9 @@ function createSubtitleElement(subtitle = {}, prevElement) {
     const subtitleString = `
         <div class="subtitle-entry">
             <div class="arrows">
-                <img onclick="moveSubtitle(this, 'up')" class="arrow" src="https://image.flaticon.com/icons/svg/7/7645.svg">
+                <img onclick="moveSubtitle(this, 'up')" class="arrow" src="https://image.flaticon.com/icons/svg/7/7645.svg" title="Move Subtitle Up">
                 <br />
-                <img onclick="moveSubtitle(this, 'down');" class="arrow" src="https://image.flaticon.com/icons/svg/25/25224.svg">
+                <img onclick="moveSubtitle(this, 'down');" class="arrow" src="https://image.flaticon.com/icons/svg/25/25224.svg" title="Move Subtitle Down">
             </div>
             <button class="time-remove time-button" onclick="removeSubtitleElement(this)">x</button>
             <div class="times">
