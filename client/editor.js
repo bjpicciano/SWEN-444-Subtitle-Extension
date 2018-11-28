@@ -42,8 +42,12 @@ function saveSubtitles() {
         .then(data => {
             console.log(data);
 
-            const saveButton = document.getElementById("save-button");
-            // saveButton.classList.add("hidden");
+            // Remove and re-add fade-out to trigger animation
+            const saveMessage = document.getElementById("save-message");
+            saveMessage.classList.remove("hidden");
+            setTimeout(() => {
+                saveMessage.classList.add("hidden");
+            }, 2000);
         })
         .catch(e => {
             console.error(e);

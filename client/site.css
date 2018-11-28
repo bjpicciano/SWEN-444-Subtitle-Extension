@@ -17,10 +17,6 @@ video::cue{
     visibility: hidden;
 }
 
-.hidden {
-    display: none;
-}
-
 .flex-container {
     height: 100%;
     display: flex;
@@ -74,6 +70,10 @@ video::cue{
     margin-top: 10px;
 }
 
+#save-message {
+    padding: 0 10px 0 10px;
+}
+
 #done-button {
     width: 82px;
     padding: 10px 0 10px 0;
@@ -114,6 +114,10 @@ video::cue{
 .arrow {
     padding: 5px;
     width: 12px;
+}
+
+.hidden {
+    display: none;
 }
 
 #loader,
