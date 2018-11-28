@@ -28,10 +28,22 @@ video::cue{
     /*border: 1px black solid;*/
 }
 
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
 .video-container {
     flex: 3;
     text-align: center;
     height: 100%;
+}
+
+.video-container > video {
+    height: auto;
 }
 
 #subtitle-container {
