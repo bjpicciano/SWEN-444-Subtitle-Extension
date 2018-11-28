@@ -40,7 +40,7 @@ Node.js will serve your client the HTML and Javascript files
 2. Enable Developer Mode by clicking the toggle switch next to Developer mode.
 3. Click the LOAD UNPACKED button and select the extension directory of this project.
 
-You can now proceed 
+You can now begin using the Universal Subtitle Extension
 
 ## Features
 ### User Roles
