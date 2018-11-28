@@ -22,6 +22,15 @@ $("#profile-icon").on("click", function() {
 $("#settings-icon").on("click", function() {
     $('.home-screen').hide();
     $('.settings-screen').toggle("slide", {direction: "down"});
+
+    chrome.storage.sync.get('data', function(data) {
+        document.getElementById("font-color-picker").value = data.data.fontColor || document.getElementById("font-color-picker").value;
+        document.getElementById("font-color-picker").style.backgroundColor = document.getElementById("font-color-picker").value;
+
+        document.getElementById("background-color-picker").value = data.data.bkgdColor || document.getElementById("background-color-picker").value;
+        document.getElementById("background-color-picker").style.backgroundColor = document.getElementById("background-color-picker").value;
+    });
+
 });
 
 
