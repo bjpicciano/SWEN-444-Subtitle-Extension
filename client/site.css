@@ -70,7 +70,7 @@ video::cue{
     margin-top: 10px;
 }
 
-#save-message {
+#save-message, #error-save {
     padding: 0 10px 0 10px;
 }
 
@@ -118,6 +118,10 @@ video::cue{
 
 .hidden {
     display: none;
+}
+
+.error {
+    color: red;
 }
 
 #loader,

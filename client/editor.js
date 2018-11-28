@@ -51,6 +51,11 @@ function saveSubtitles() {
         })
         .catch(e => {
             console.error(e);
+            const saveError = document.getElementById("error-save");
+            saveError.classList.remove("hidden");
+            setTimeout(() => {
+                saveError.classList.add("hidden");
+            }, 2000);
         });
 }
 
