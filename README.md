@@ -81,6 +81,6 @@ Contributor - The secondary user the application. They will be able to create an
 - When loading a new webpage, even if the extension is in the on state, it will be not active and showing subtitles on the current page until the extension window is opened again.
 
 ### Missing Features
-- Subtitle review
-- Submit for corrections
-- Enable on any video
+- Review newly transcribed videos
+- Submit video for corrections
+- Enable subtitles on any video
