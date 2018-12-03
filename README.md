@@ -57,10 +57,17 @@ Contributor - The secondary user the application. They will be able to create an
 
 
 ### User Actions
+- Be able to toggle subtitles on/off.
+- Have the ability to change settings of how subtitles appear.
+- Have the ability to add new subtitles to a video without any.
+- Have the ability to edit/fix existing subtitles in a video.
+- Have the ability to get help for the extension. 
+- Be able to navigate backwards to the previous screen in the extension.
 
 
 ## Project State
 ### Known Bugs
+- When loading a new webpage, even if the extension is in the on state, it will be not active and showing subtitles on the current page until the extension window is opened again.
 
 ### Missing Features
 - Subtitle review
