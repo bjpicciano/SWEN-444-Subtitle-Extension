@@ -11,7 +11,7 @@ corrections to subtitled works as well as grow their own contribution pool by
 transcribing their favorite media for others to enjoy. Consumers can enjoy the benefits
 of accurate, verified subtitles with easy access via the browser extension.
 Simply toggle the extension and subtitles will be overlayed at the video’s base;
-complete with size and color customization options. 
+complete with size and color customization options.
 
 ## Running the project
 *More details in the sections below*
@@ -40,10 +40,21 @@ Node.js will serve your client the HTML and Javascript files
 2. Enable Developer Mode by clicking the toggle switch next to Developer mode.
 3. Click the LOAD UNPACKED button and select the extension directory of this project.
 
-You can now begin using the Universal Subtitle Extension
+The Universal Subtitle Extension is now ready to use. You will notice this icon:
+
+![Quill Icon](extension/img/quill48.png)
+
+In the top right corner of the Chrome Browser. Clicking on it will launch the screen that allows you to start interacting with the extension.
 
 ## Features
 ### User Roles
+
+Consumer - The primary user of the application. They will be able to read subtitles on any video anywhere on the web, understand when a video is not subtitled, and have the freedom to customize the subtitle display to ensure an enjoyable and positive experience. This assumes having the technical ability to be able to use a web browser along with installing and interacting with extensions.
+
+
+Contributor - The secondary user the application. They will be able to create and edit subtitles for any video on the web and keep track of personal contributions. We assume they will have and be able to use a browser with the extension enabled, have the technical ability to be able to use a web browser along with installing and interacting with extensions, and they will have the skill necessary to subtitle a video.
+
+
 
 ### User Actions
 
