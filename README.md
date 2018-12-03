@@ -55,6 +55,17 @@ Consumer - The primary user of the application. They will be able to read subtit
 Contributor - The secondary user the application. They will be able to create and edit subtitles for any video on the web and keep track of personal contributions. We assume they will have and be able to use a browser with the extension enabled, have the technical ability to be able to use a web browser along with installing and interacting with extensions, and they will have the skill necessary to subtitle a video.
 
 
+### Extension Functions
+
+**Settings \- ** Modify subtitle font color and background colors.
+![Settings Icon](extension/img/settings-icon.png)
+
+**Profile \- ** See personal stats regarding active repos and subtitle contributions. 
+![Profile Icon](extension/img/profile-icon.png)
+
+**Transcribe \- ** Write subtitles for a video with respective time tags.
+![Transcribe Icon](extension/img/main-icon.png)
+
 
 ### User Actions
 - Be able to toggle subtitles on/off.
